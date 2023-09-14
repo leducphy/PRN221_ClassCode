@@ -1,0 +1,97 @@
+﻿<Window x:Class="sampleProduct.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sampleProduct"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="4 4 0 0" Content="Product ID: " />
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="4 4 0 0" x:Name="txtProductID" Width="200" IsReadOnly="True" Text="{Binding ProductId}" DataContext="{Binding SelectedItem, ElementName=DGVList}" />
+
+        <Label Grid.Row="1" Grid.Column="0" Margin="4 4 0 0" Content="Product Name: " />
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="4 4 0 0" x:Name="txtName" Width="200"  />
+
+        <Label Grid.Row="2" Grid.Column="0" Margin="4 4 0 0" Content="Suplier Name: " />
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="4 4 0 0" x:Name="cbSuplierName" Width="200" DisplayMemberPath="CompanyName" SelectedValuePath="SupplierId" SelectedValue="{Binding SupplierId}" DataContext="{Binding SelectedItem, ElementName=DGVList}" />
+
+        <Label Grid.Row="3" Grid.Column="0" Margin="4 4 0 0" Content="Category Name: " />
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="4 4 0 0" x:Name="cbCategory" Width="200" DisplayMemberPath="CategoryName" SelectedValuePath="CategoryId" SelectedValue="{Binding CategoryId}" DataContext="{Binding SelectedItem, ElementName=DGVList}" />
+
+        <Label Grid.Row="4" Grid.Column="0" Margin="4 4 0 0" Content="Quantity Unit: " />
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="4 4 0 0" x:Name="txtQuantity" Width="200"  />
+
+        <Label Grid.Row="0" Grid.Column="2" Margin="4 4 0 0" Content="Unit Price: " />
+        <TextBox Grid.Row="0" Grid.Column="3" Margin="4 4 0 0" x:Name="txtUnitPrice" Width="200"/>
+
+        <Label Grid.Row="1" Grid.Column="2" Margin="4 4 0 0" Content="Unit In Stock: " />
+        <TextBox Grid.Row="1" Grid.Column="3" Margin="4 4 0 0" x:Name="txtUnitInStock" Width="200" />
+
+        <Label Grid.Row="2" Grid.Column="2" Margin="4 4 0 0" Content="Unit On Order: " />
+        <TextBox Grid.Row="2" Grid.Column="3" Margin="4 4 0 0" x:Name="txtUnitOnOder" Width="200"/>
+
+        <Label Grid.Row="3" Grid.Column="2" Margin="4 4 0 0" Content="Reoder Level: " />
+        <TextBox Grid.Row="3" Grid.Column="3" Margin="4 4 0 0" x:Name="txtReoderLevel" Width="200" />
+
+        <Label Grid.Row="4" Grid.Column="2" Margin="4 4 0 0" Content="Discontinued: " />
+        <CheckBox Grid.Row="4" Grid.Column="3" Margin="4 8 0 0" x:Name="ckbDiscontinued" Width="200" />
+
+        <Button Grid.ColumnSpan="2" Grid.Row="5" x:Name="Reset" Content="Reset" Margin="40 10 0 0" HorizontalAlignment="Left" Height="30" Width="80" Click="Reset_Click" Grid.RowSpan="2" VerticalAlignment="Top"></Button>
+        <Button Grid.Row="5" x:Name="Add" Content="Add" Margin="47,10,0,0" HorizontalAlignment="Left" Height="30" Width="80" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top" Click="Add_Click"/>
+        <Button Grid.ColumnSpan="5" Grid.Row="5" x:Name="Edit" Content="Edit" Margin="270 10 0 0" HorizontalAlignment="Left" Height="30" Width="80" Click="Edit_Click"></Button>
+        <Button Grid.ColumnSpan="2" Grid.Row="5" x:Name="Delete" Content="Delete" Margin="83,10,0,0" HorizontalAlignment="Left" Height="30" Width="80" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Top" Click="Delete_Click"></Button>
+        <Button Grid.Row="5" x:Name="Exit" Content="Exit" Margin="98,10,0,0" HorizontalAlignment="Left" Height="30" Width="80" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" Click="Exit_Click"/>
+
+        <DataGrid Grid.Row="6" Grid.ColumnSpan="4" Width="800" Margin="0 20 0 0 " Name="DGVList" MouseLeftButtonUp="DGVList_MouseLeftButtonUp" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header ="ProductID" 
+                                        Width="Auto" 
+                                        Binding="{Binding Path = ProductId }"/>
+                <DataGridTextColumn Header ="ProductName" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = ProductName }"/>
+                <DataGridTextColumn Header ="SuplierName" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = CategoryId }"/>
+                <DataGridTextColumn Header ="Quantity Per Unit" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = QuantityPerUnit }"/>
+                <DataGridTextColumn Header ="UnitPrice" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = UnitPrice }"/>
+                <DataGridTextColumn Header ="Unit in Stocks" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = UnitsInStock }"/>
+                <DataGridTextColumn Header ="Unit in Order" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = UnitsOnOrder }"/>
+                <DataGridTextColumn Header ="Reorder Level" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = ReorderLevel }"/>
+                <DataGridTextColumn Header ="Discontinued" 
+                                        Width="Auto"  
+                                        Binding="{Binding Path = Discontinued }"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
